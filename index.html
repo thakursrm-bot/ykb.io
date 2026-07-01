@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -314,6 +315,94 @@
   .reveal{ opacity:0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
   .reveal.in{ opacity:1; transform:none; }
   @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform:none; transition:none; } }
+
+  /* ---------- AI AGENTS SHOWCASE ---------- */
+  .agents-band{ background: var(--purple-deep); border-radius:24px; padding:56px 40px; }
+  .agents-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap; margin-bottom:36px; }
+  .agents-head .eyebrow{ color: var(--gold-light); }
+  .agents-head h2{ color:var(--white); margin-top:10px; }
+  .agents-head p{ color:#C7BFE8; margin-top:10px; max-width:440px; font-size:0.94rem; }
+  .agents-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+  @media (max-width:900px){ .agents-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .agents-grid{ grid-template-columns:1fr; } }
+  .agent-card{
+    background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14);
+    border-radius:16px; padding:22px; position:relative; transition: transform .2s ease, background .2s ease;
+  }
+  .agent-card:hover{ transform: translateY(-4px); background: rgba(255,255,255,0.1); }
+  .agent-card .live{
+    position:absolute; top:16px; right:16px; font-family:'JetBrains Mono',monospace;
+    font-size:0.58rem; letter-spacing:0.08em; text-transform:uppercase; color:#7CE0A8;
+    display:flex; align-items:center; gap:5px;
+  }
+  .agent-card .live .dot{ width:6px; height:6px; border-radius:50%; background:#4ADE80; box-shadow:0 0 0 3px rgba(74,222,128,0.25); }
+  .agent-card .icon{
+    width:38px; height:38px; border-radius:10px; background: var(--gold);
+    display:flex; align-items:center; justify-content:center; font-size:1rem; margin-bottom:16px;
+  }
+  .agent-card h4{ color:var(--white); font-family:'Fraunces',serif; font-size:1.02rem; margin-bottom:8px; }
+  .agent-card p{ color:#C7BFE8; font-size:0.82rem; line-height:1.5; }
+  .agents-foot{ margin-top:28px; text-align:center; }
+  .agents-foot p{ color:#A79ACF; font-size:0.82rem; }
+
+  /* ---------- CHAT WIDGET (MIA) ---------- */
+  .chat-toggle{
+    position:fixed; bottom:24px; right:24px; z-index:90;
+    width:60px; height:60px; border-radius:50%;
+    background: var(--gold); color:var(--white); border:none;
+    box-shadow: 0 16px 32px rgba(201,150,46,0.4); cursor:pointer;
+    font-size:1.5rem; display:flex; align-items:center; justify-content:center;
+    transition: transform .2s ease;
+  }
+  .chat-toggle:hover{ transform: scale(1.06); }
+  .chat-toggle .pulse{
+    position:absolute; inset:-4px; border-radius:50%; border:2px solid var(--gold);
+    animation: pulse-ring 2.4s ease-out infinite;
+  }
+  @keyframes pulse-ring{ 0%{ opacity:0.6; transform:scale(0.9);} 100%{ opacity:0; transform:scale(1.35);} }
+  @media (prefers-reduced-motion: reduce){ .chat-toggle .pulse{ animation:none; display:none; } }
+
+  .chat-panel{
+    position:fixed; bottom:96px; right:24px; z-index:90;
+    width:368px; max-width:92vw; height:540px; max-height:74vh;
+    background: var(--white); border-radius:20px; overflow:hidden;
+    display:flex; flex-direction:column;
+    box-shadow: 0 34px 80px rgba(27,23,48,0.3); border:1px solid var(--line);
+    opacity:0; transform: translateY(18px) scale(0.98); pointer-events:none;
+    transition: opacity .22s ease, transform .22s ease;
+  }
+  .chat-panel.open{ opacity:1; transform:none; pointer-events:auto; }
+
+  .chat-head{ background: var(--purple-deep); color:var(--white); padding:16px 18px; display:flex; align-items:center; gap:12px; }
+  .chat-head .stamp.small{ width:38px; height:38px; border-color: var(--gold-light); }
+  .chat-head .stamp.small::before{ border-color: var(--gold-light); }
+  .chat-head .stamp.small span{ color: var(--gold-light); font-size:0.4rem; }
+  .chat-head-text b{ display:block; font-family:'Fraunces',serif; font-size:0.98rem; }
+  .chat-head-text span{ font-size:0.7rem; color:#C7BFE8; }
+  .chat-close{ margin-left:auto; background:none; border:none; color:var(--white); font-size:1.3rem; cursor:pointer; opacity:0.8; line-height:1; }
+  .chat-close:hover{ opacity:1; }
+
+  .chat-body{ flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:10px; background: var(--lavender); }
+  .msg{ max-width:84%; padding:10px 14px; border-radius:14px; font-size:0.86rem; line-height:1.48; }
+  .msg.bot{ background: var(--white); border:1px solid var(--line); align-self:flex-start; border-bottom-left-radius:4px; }
+  .msg.user{ background: var(--purple); color:var(--white); align-self:flex-end; border-bottom-right-radius:4px; }
+  .msg.typing{ color:#8a80a8; font-style:italic; }
+
+  .chat-suggest{ display:flex; gap:8px; flex-wrap:wrap; padding: 4px 16px 12px; background: var(--lavender); }
+  .chip{
+    font-family:'JetBrains Mono',monospace; font-size:0.66rem; border:1px solid var(--line);
+    background: var(--white); padding:6px 10px; border-radius:100px; cursor:pointer; color: var(--purple-deep);
+  }
+  .chip:hover{ border-color: var(--purple); }
+
+  .chat-input-row{ display:flex; gap:8px; padding:12px; border-top:1px solid var(--line); background: var(--white); }
+  .chat-input-row input{
+    flex:1; border:1px solid var(--line); border-radius:100px; padding:10px 16px;
+    font-family:'Inter',sans-serif; font-size:0.86rem; outline:none;
+  }
+  .chat-input-row input:focus{ border-color: var(--purple); }
+  .chat-send{ background: var(--gold); color:var(--white); border:none; width:40px; height:40px; border-radius:50%; cursor:pointer; font-size:1rem; flex-shrink:0; }
+  .chat-send:disabled{ opacity:0.5; cursor:not-allowed; }
 </style>
 </head>
 <body>
@@ -324,6 +413,7 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#programme">Programme</a></li>
       <li><a href="#roadmap">How It Works</a></li>
+      <li><a href="#agents">AI Team</a></li>
       <li><a href="#trust">Trust</a></li>
       <li><a href="#guide">Free Guide</a></li>
       <li><a href="#podcast">Podcast</a></li>
@@ -435,6 +525,64 @@
   </div>
 </section>
 
+<section id="agents" class="wrap reveal">
+  <div class="agents-band">
+    <div class="agents-head">
+      <div>
+        <span class="eyebrow">The YKB AI Team</span>
+        <h2>A full team of AI employees, working for your career 24/7.</h2>
+        <p>MIA is live below — chat with her now. The rest of the team is rolling out over the coming months.</p>
+      </div>
+    </div>
+    <div class="agents-grid">
+      <div class="agent-card">
+        <span class="live"><span class="dot"></span>Live Now</span>
+        <div class="icon">🎙️</div>
+        <h4>MIA — Voice &amp; Chat Agent</h4>
+        <p>Welcomes every visitor, answers questions, and runs a quick eligibility check — 24 hours a day.</p>
+      </div>
+      <div class="agent-card">
+        <div class="icon">📋</div>
+        <h4>Assessment Agent</h4>
+        <p>Collects your role, visa status, and goals, then recommends the right programme tier before you book.</p>
+      </div>
+      <div class="agent-card">
+        <div class="icon">📚</div>
+        <h4>Knowledge Agent</h4>
+        <p>Trained on YKB's own guides, videos, and up-to-date immigration content — not generic AI answers.</p>
+      </div>
+      <div class="agent-card">
+        <div class="icon">📅</div>
+        <h4>Booking &amp; Payment Agent</h4>
+        <p>Shows real-time availability, confirms your consultation, and sends reminders automatically.</p>
+      </div>
+      <div class="agent-card">
+        <div class="icon">🗂️</div>
+        <h4>Mini CRM</h4>
+        <p>Keeps your profile, assessment results, and conversation history in one place for Sarika.</p>
+      </div>
+      <div class="agent-card">
+        <div class="icon">📣</div>
+        <h4>Marketing Agent</h4>
+        <p>Drafts LinkedIn, Instagram, and newsletter content straight from your programme material.</p>
+      </div>
+      <div class="agent-card">
+        <div class="icon">📈</div>
+        <h4>Growth Agent</h4>
+        <p>Monitors SEO, tracks competitors, and flags opportunities to reach more international professionals.</p>
+      </div>
+      <div class="agent-card">
+        <div class="icon">📊</div>
+        <h4>Admin Dashboard</h4>
+        <p>One view of visitors, bookings, conversion rate, and revenue — updated in real time.</p>
+      </div>
+    </div>
+    <div class="agents-foot">
+      <p>Try MIA now using the chat button in the bottom-right corner →</p>
+    </div>
+  </div>
+</section>
+
 <section id="trust" class="wrap reveal">
   <div class="trust-band">
     <div class="trust-item">
@@ -540,6 +688,35 @@
   </div>
 </footer>
 
+<!-- MIA Chat Widget -->
+<button class="chat-toggle" id="chatToggle" aria-label="Chat with MIA">
+  <span class="pulse"></span>
+  <span>💬</span>
+</button>
+
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-head">
+    <div class="stamp small"><span>MIA</span></div>
+    <div class="chat-head-text">
+      <b>MIA</b>
+      <span>YKB AI Assistant · Online</span>
+    </div>
+    <button class="chat-close" id="chatClose" aria-label="Close chat">✕</button>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="msg bot">Hi! I'm MIA, YourKnowledgeBuddy's AI assistant 👋 I can answer questions about UK visa sponsorship or run a quick eligibility check. What would you like to do?</div>
+  </div>
+  <div class="chat-suggest" id="chatSuggest">
+    <button class="chip" data-msg="Am I eligible for a Skilled Worker Visa?">Check my eligibility</button>
+    <button class="chip" data-msg="What's the difference between your programme tiers?">Programme tiers</button>
+    <button class="chip" data-msg="I'd like to book a consultation">Book a consultation</button>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chatInput" placeholder="Type your message…" autocomplete="off">
+    <button class="chat-send" id="chatSend" aria-label="Send">➤</button>
+  </div>
+</div>
+
 <script>
   const toggle = document.getElementById('menuToggle');
   const links = document.getElementById('navLinks');
@@ -550,6 +727,134 @@
     entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ---------- MIA CHAT LOGIC ---------- */
+  const chatToggle = document.getElementById('chatToggle');
+  const chatPanel = document.getElementById('chatPanel');
+  const chatClose = document.getElementById('chatClose');
+  const chatBody = document.getElementById('chatBody');
+  const chatInput = document.getElementById('chatInput');
+  const chatSend = document.getElementById('chatSend');
+  const chatSuggest = document.getElementById('chatSuggest');
+
+  // STEP 1: Deploy mia-worker.js to Cloudflare Workers (see the README for steps).
+  // STEP 2: Paste your worker's URL below, e.g. 'https://ykb-mia.yourname.workers.dev'
+  // Until you do, the chat will only work while previewing inside Claude.
+  const WORKER_URL = 'PASTE_YOUR_WORKER_URL_HERE';
+
+  const MIA_SYSTEM_PROMPT = `You are MIA, the friendly AI assistant for YourKnowledgeBuddy (YKB), a UK careers and immigration guidance platform founded by Sarika, who has lived in the UK for 16 years.
+
+Your job:
+1. Warmly welcome visitors and answer general questions about UK visa sponsorship (e.g. Skilled Worker visa basics, what SOC codes are, how sponsorship works) in plain, encouraging language.
+2. Run a light eligibility conversation: ask about their target role/industry, current visa status or country, and career goals — one or two questions at a time, not a long form.
+3. Based on what they share, recommend the right YKB programme tier:
+   - Starter (£199): SOC code eligibility check, sponsorship likelihood assessment, CV audit.
+   - Professional (£499): everything in Starter, plus a full ATS-optimised CV rewrite, LinkedIn overhaul, and a 90-day roadmap with target employers.
+   - 1:1 Coaching (£1,000): everything in Professional, plus dedicated coaching sessions, mock interviews, and support through to offer.
+4. Always steer the conversation toward booking a consultation or joining the programme — but do it naturally, not pushy.
+
+Rules:
+- You are not an immigration lawyer. For specific legal advice, tell them to consult an immigration solicitor (Sarika works with MAK25 Immigration).
+- Never guarantee a visa outcome or sponsorship — speak in terms of likelihood and strategy.
+- Keep replies short: 2-4 sentences, warm and conversational, occasional emoji is fine but don't overdo it.
+- If asked about pricing, be direct and give the real numbers above.
+- If they seem ready, end with a clear next step: "Would you like to book a consultation with Sarika?"`;
+
+  let chatHistory = [];
+  let chatOpen = false;
+
+  function openChat(){
+    chatOpen = true;
+    chatPanel.classList.add('open');
+    chatInput.focus();
+  }
+  function closeChat(){
+    chatOpen = false;
+    chatPanel.classList.remove('open');
+  }
+  chatToggle.addEventListener('click', () => chatOpen ? closeChat() : openChat());
+  chatClose.addEventListener('click', closeChat);
+
+  function addMessage(text, role){
+    const div = document.createElement('div');
+    div.className = 'msg ' + (role === 'user' ? 'user' : 'bot');
+    div.textContent = text;
+    chatBody.appendChild(div);
+    chatBody.scrollTop = chatBody.scrollHeight;
+    return div;
+  }
+
+  function addBookingCTA(){
+    if(document.getElementById('chatBookCTA')) return;
+    const a = document.createElement('a');
+    a.id = 'chatBookCTA';
+    a.href = '#contact';
+    a.className = 'msg bot';
+    a.style.cursor = 'pointer';
+    a.style.fontWeight = '600';
+    a.style.color = '#4732AB';
+    a.textContent = '📅 Book a consultation with Sarika →';
+    a.addEventListener('click', closeChat);
+    chatBody.appendChild(a);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  async function sendToMIA(userText){
+    chatHistory.push({ role: 'user', content: userText });
+    const typing = addMessage('MIA is typing…', 'bot');
+    typing.classList.add('typing');
+    chatSend.disabled = true;
+
+    const useWorker = WORKER_URL && WORKER_URL.startsWith('http');
+    const endpoint = useWorker ? WORKER_URL : 'https://api.anthropic.com/v1/messages';
+    const payload = useWorker
+      ? { messages: chatHistory }
+      : { model: 'claude-sonnet-4-6', max_tokens: 1000, system: MIA_SYSTEM_PROMPT, messages: chatHistory };
+
+    try{
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await response.json();
+      typing.remove();
+
+      const textBlock = (data.content || []).find(b => b.type === 'text');
+      const reply = textBlock ? textBlock.text : "Sorry, I couldn't quite catch that — could you try again?";
+      addMessage(reply, 'bot');
+      chatHistory.push({ role: 'assistant', content: reply });
+
+      if(/book|consultation|programme|join|£/i.test(reply)){
+        addBookingCTA();
+      }
+    }catch(err){
+      typing.remove();
+      addMessage("I'm having trouble connecting right now — please try again in a moment, or use the 'Join the Programme' button above.", 'bot');
+    }finally{
+      chatSend.disabled = false;
+    }
+  }
+
+  function handleSend(){
+    const text = chatInput.value.trim();
+    if(!text) return;
+    addMessage(text, 'user');
+    chatInput.value = '';
+    chatSuggest.style.display = 'none';
+    sendToMIA(text);
+  }
+
+  chatSend.addEventListener('click', handleSend);
+  chatInput.addEventListener('keydown', (e) => { if(e.key === 'Enter') handleSend(); });
+  chatSuggest.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const msg = chip.getAttribute('data-msg');
+      addMessage(msg, 'user');
+      chatSuggest.style.display = 'none';
+      sendToMIA(msg);
+    });
+  });
 </script>
 
 </body>
